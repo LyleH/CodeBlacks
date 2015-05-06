@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using DiffPlex;
@@ -11,18 +12,27 @@ namespace CodeBlacks.BusinessRules
     {
         public static SideBySideDiffModel CompareFiles(string oldFile, string newFile)
         {
-            string oldFileContent = File.ReadAllText(oldFile);
-            string newFileContent = File.ReadAllText(newFile);
+            return CompareFileContent(File.ReadAllText(oldFile), File.ReadAllText(newFile));
+        }
+
+        public static SideBySideDiffModel CompareFileContent(string oldFileContent, string newFileContent)
+        {
+            if (oldFileContent == null || newFileContent == null)
+            {
+                Trace.WriteLine("One of the file content is null");
+                return null;
+            }
+
             if (oldFileContent == newFileContent)
             {
-                // Files are identical
+                Trace.WriteLine("Files are identical");
                 return null;
             }
 
             const string matchText = "<tr><th>Coverage:</th><td>0%</td></tr>";
             if (oldFileContent.Contains(matchText) && newFileContent.Contains(matchText))
             {
-                // Both files have no coverage
+                Trace.WriteLine("Both files have no coverage.");
                 return null;
             }
 
@@ -33,7 +43,7 @@ namespace CodeBlacks.BusinessRules
             DiffPiece[] newLines = diff.NewText.Lines.Where(DoesLineHaveDifferentCoverage).ToArray();
             if (!diff.OldText.Lines.Where(DoesLineHaveDifferentCoverage).Concat(newLines).Any())
             {
-                // No changes to code coverage
+                Trace.WriteLine("No changes to code coverage");
                 return null;
             }
 
@@ -48,7 +58,7 @@ namespace CodeBlacks.BusinessRules
 
         private static bool DoesLineHaveDifferentCoverage(DiffPiece line)
         {
-            return line.Type != ChangeType.Unchanged && Regex.IsMatch(line.Text, @"'VC':\s*'\d+'");
+            return line.Type != ChangeType.Unchanged && line.Text != null && Regex.IsMatch(line.Text, @"'VC':\s*'\d+'");
         }
     }
 }
