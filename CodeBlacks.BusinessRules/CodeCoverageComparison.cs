@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using DiffPlex;
@@ -8,11 +7,18 @@ using DiffPlex.DiffBuilder.Model;
 
 namespace CodeBlacks.BusinessRules
 {
-    public static class CodeCoverageComparison
+    public sealed class CodeCoverageComparison
     {
-        public static SideBySideDiffModel CompareFiles(string oldFile, string newFile)
+        private readonly IFileReader fileReader;
+
+        public CodeCoverageComparison(IFileReader fileReader)
         {
-            return CompareFileContent(File.ReadAllText(oldFile), File.ReadAllText(newFile));
+            this.fileReader = fileReader;
+        }
+
+        public SideBySideDiffModel CompareFiles(string oldFile, string newFile)
+        {
+            return CompareFileContent(fileReader.ReadAllText(oldFile), fileReader.ReadAllText(newFile));
         }
 
         public static SideBySideDiffModel CompareFileContent(string oldFileContent, string newFileContent)
