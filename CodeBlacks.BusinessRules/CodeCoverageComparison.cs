@@ -35,7 +35,7 @@ namespace CodeBlacks.BusinessRules
                 Trace.WriteLine("Both files have no coverage.");
                 return null;
             }
-
+            
             oldFileContent = RemoveLineNumbers(oldFileContent);
             newFileContent = RemoveLineNumbers(newFileContent);
             SideBySideDiffBuilder sideBySideDiffer = new SideBySideDiffBuilder(new Differ());
@@ -46,13 +46,13 @@ namespace CodeBlacks.BusinessRules
                 Trace.WriteLine("No changes to code coverage");
                 return null;
             }
-
+            
             return diff;
         }
 
         private static string RemoveLineNumbers(string fileContent)
         {
-            const string lineNumberPattern = @"(?<Prefix><td[^>]*>(?:<td[^<]+</td>){2})(?:<td class=""rightmargin right""><code>\d+</code></td>)";
+            const string lineNumberPattern = @"(?<Prefix>(?:<td[^<]+</td>){2})(?:<td class=""rightmargin right""><code>\d+</code></td>)";
             return Regex.Replace(fileContent, lineNumberPattern, "${Prefix}");
         }
 
