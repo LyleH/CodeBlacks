@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBlacks.Tests", "CodeBla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBlacks.Harness", "CodeBlacks.Harness\CodeBlacks.Harness.csproj", "{3C7180D4-B02A-422A-9467-D6953ACFB6B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBlacks.Harness2", "CodeBlacks.Harness2\CodeBlacks.Harness2.csproj", "{73B76716-8166-4DE6-91C7-ADEC8BDDCAA5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{3C7180D4-B02A-422A-9467-D6953ACFB6B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C7180D4-B02A-422A-9467-D6953ACFB6B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C7180D4-B02A-422A-9467-D6953ACFB6B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73B76716-8166-4DE6-91C7-ADEC8BDDCAA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73B76716-8166-4DE6-91C7-ADEC8BDDCAA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73B76716-8166-4DE6-91C7-ADEC8BDDCAA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73B76716-8166-4DE6-91C7-ADEC8BDDCAA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

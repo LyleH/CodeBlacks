@@ -58,7 +58,10 @@
     </Compile>
     <Compile Include="CodeCoverageComparison.cs" />
     <Compile Include="CodeCoverageRunner.cs" />
+    <Compile Include="DirectoryReader.cs" />
+    <Compile Include="FileDifferences.cs" />
     <Compile Include="FileReader.cs" />
+    <Compile Include="IDirectoryReader.cs" />
     <Compile Include="IFileReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
