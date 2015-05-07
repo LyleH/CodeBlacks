@@ -10,7 +10,7 @@
     <Error Text="CodeCoverageFilter property is not found" Condition="'$(CodeCoverageFilter)' == ''"/>
     <PropertyGroup>
       <CodeCoverageCommand>&quot;$(PathToOpenCover)&quot;</CodeCoverageCommand>
-      <CodeCoverageCommand>$(CodeCoverageCommand) &quot;-targetdir:$(PathToTestRunner)&quot;</CodeCoverageCommand>
+      <CodeCoverageCommand>$(CodeCoverageCommand) &quot;-target:$(PathToTestRunner)&quot;</CodeCoverageCommand>
       <CodeCoverageCommand>$(CodeCoverageCommand) &quot;-targetargs:$(TestRunnerArguments)&quot;</CodeCoverageCommand>
       <CodeCoverageCommand>$(CodeCoverageCommand) -register:user</CodeCoverageCommand>
       <CodeCoverageCommand>$(CodeCoverageCommand) &quot;-output:$(PathToCodeCoverageXmlFile)&quot;</CodeCoverageCommand>

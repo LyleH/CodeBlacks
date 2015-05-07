@@ -48,7 +48,7 @@ namespace CodeBlacks.BusinessRules
                     {
                         Loggers = new ILogger[] { new ConsoleLogger() }
                     };
-                    BuildManager.DefaultBuildManager.Build(buildParameters, new BuildRequestData(project, null));
+                    BuildManager.DefaultBuildManager.Build(buildParameters, new BuildRequestData(project, new string[0]));
                 }
             }
         }
