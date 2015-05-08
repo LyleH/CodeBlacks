@@ -8,8 +8,15 @@ namespace CodeBlacks.Harness
     {
         public static void Main(string[] args)
         {
-            ////CodeCoverageComparison.CompareFiles(args[0], args[1]);
             string baseDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\.."));
+            FileDifferencesSerializer.ToFile(Path.Combine(baseDirectory, @"..\restsharp.json"),
+                new FileDifferences[]
+                {
+                    new FileDifferences(
+                        "RestSharp_RestClient.htm",
+                        CodeCoverageComparison.CompareFileContent(File.ReadAllText(args[0]), File.ReadAllText(args[1])))
+                });
+            /*string baseDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\.."));
             (new CodeCoverageRunner()
             {
                 PathToOpenCover = Path.Combine(baseDirectory, @"RestSharp\packages\OpenCover.4.5.3723\OpenCover.Console.exe"),
@@ -19,7 +26,7 @@ namespace CodeBlacks.Harness
                 PathToCodeCoverageXmlFile = Path.Combine(baseDirectory, @"RestSharp\Coverage2.xml"),
                 PathToCodeCoverageReportDirectory = Path.Combine(baseDirectory, @"RestSharp\Coverage2"),
                 CodeCoverageFilter = @"+[RestSharp*]*"
-            }).RunCodeCoverage();
+            }).RunCodeCoverage();*/
         }
     }
 }
