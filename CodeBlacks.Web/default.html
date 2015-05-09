@@ -1,10 +1,75 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Code Blacks</title>
 	<meta charset="utf-8" />
+    <link rel="stylesheet" href="Content/bootstrap.cyborg.css">
 </head>
-<body>
-    Test page
+<body style="background-color: black">
+    <div id="slides" class="carousel slide" data-ride="carousel" data-interval="false">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner text-center" role="listbox" style="height: 520px">
+            <div class="item active first-slide">
+                <div class="row" style="margin-top: 10px">
+                    <img src="images/SilverFern.jpg" />
+                </div>
+                <h1 style="text-align:center; color:#8D8D8D; font-size:80px"><strong>Code Blacks</strong></h1>
+            </div>
+            <div class="item">
+                <h1 style="text-align:center; color:#8D8D8D">Test Results</h1>
+                <a href="#slides" role="button" data-slide="next">Analyze</a>
+            </div>
+            <div class="item">
+                <h1 style="text-align:center; color:#8D8D8D">Test Analysis</h1>
+                <div class="container" style="height: 400px; width: 500px; background-color:white; border-radius:5px;">
+                    <div style="height:50px; width: 100px; top:10px; left:180px; border: 1px solid #8D8D8D; color: #2A9FD6; position:relative;">
+                        Test Results
+                    </div>
+                    <!--<canvas style="left: 190px; top:60px; width: 1px; height: 25;" slope="vertical" stroke-width="1" stroke-color="[0,0,0,1]">-->
+                    <div style="height:50px; width: 150px; top:75px; left:120px; border: 1px solid #8D8D8D; color: #2A9FD6; position:relative;">
+                        Code Blacks website<br />
+                        (Azure web app)
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <h1 style="text-align:center; color:#8D8D8D">New Test Results</h1>
+            </div>
+            <div class="item">
+                <h1 style="text-align:center; color:#8D8D8D">Benefits</h1>
+            </div>
+            <div class="item last-slide">
+                <h1 style="text-align:center; color:#8D8D8D">Questions?</h1>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a id="previousButton" class="left carousel-control" href="#slides" role="button" data-slide="prev" style="display: none;">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a id="nextButton" class="right carousel-control" href="#slides" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <script type="text/javascript" src="Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#slides").on("slid.bs.carousel", function () {
+                if ($(".active.last-slide").length) {
+                    $("#nextButton").hide();
+                } else {
+                    $("#nextButton").show();
+                }
+                if ($(".active.first-slide").length) {
+                    $("#previousButton").hide();
+                } else {
+                    $("#previousButton").show();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
