@@ -15,5 +15,15 @@ namespace CodeBlacks.BusinessRules
         {
             File.WriteAllText(fileName, ToString(fileDifferences));
         }
+
+        public static IEnumerable<FileDifferences> FromString(string text)
+        {
+            return JsonConvert.DeserializeObject<IEnumerable<FileDifferences>>(text);
+        }
+
+        public static IEnumerable<FileDifferences> FromFile(string fileName)
+        {
+            return FromString(File.ReadAllText(fileName));
+        }
     }
 }
