@@ -8,7 +8,7 @@ namespace Assets
 	class TestReportObject
 	{
 		string FileName;
-		new List<TestReportLine>
+		new List<TestReportLine> Lines;
 	}
 
 	class TestReportLine{
