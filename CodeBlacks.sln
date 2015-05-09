@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBlacks.Harness", "CodeB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBlacks.WebJob", "CodeBlacks.WebJob\CodeBlacks.WebJob.csproj", "{B3AD868E-D5D5-4A47-8564-A9C90744B7A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBlacks.Web", "CodeBlacks.Web\CodeBlacks.Web.csproj", "{62FA5065-9408-4762-8487-FE0BC685E2DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B3AD868E-D5D5-4A47-8564-A9C90744B7A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3AD868E-D5D5-4A47-8564-A9C90744B7A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3AD868E-D5D5-4A47-8564-A9C90744B7A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62FA5065-9408-4762-8487-FE0BC685E2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62FA5065-9408-4762-8487-FE0BC685E2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62FA5065-9408-4762-8487-FE0BC685E2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62FA5065-9408-4762-8487-FE0BC685E2DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
