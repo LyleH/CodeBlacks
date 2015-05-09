@@ -71,6 +71,7 @@
     <Compile Include="IDirectoryReader.cs" />
     <Compile Include="IFileReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestComparisonRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="code_coverage.msbuild" />

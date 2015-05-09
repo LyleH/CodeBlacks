@@ -5,9 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Http;
+using CodeBlacks.BusinessRules;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage.Queue;
+using Newtonsoft.Json;
 
 namespace CodeBlacks.Web.Controllers
 {
@@ -33,8 +37,24 @@ namespace CodeBlacks.Web.Controllers
         }
         
         // POST api/values
-        public void Post([FromBody]string value)
+        public string Post(string testToRun, HttpPostedFileBase zipFile)
         {
+            string requestId = Guid.NewGuid().ToString("N");
+            string blobName = requestId + ".zip";
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["TestComparisonStorage"].ToString());
+            CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+            CloudBlobContainer testComparisonContainer = blobClient.GetContainerReference("testzips");
+            CloudBlockBlob blob = testComparisonContainer.GetBlockBlobReference(blobName);
+            blob.UploadFromStream(zipFile.InputStream);
+            CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
+            CloudQueue queue = queueClient.GetQueueReference("run-and-compare-tests");
+            TestComparisonRequest request = new TestComparisonRequest()
+            {
+                TestComparisonId = requestId,
+                TestToRun = testToRun
+            };
+            queue.AddMessage(new CloudQueueMessage(JsonConvert.SerializeObject(request)));
+            return requestId;
         }
     }
 }
