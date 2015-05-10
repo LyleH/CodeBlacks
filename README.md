@@ -1,4 +1,4 @@
-#THE BLACK SPOT ● Finding the guilty one
+#THE BLACK SPOT ● Finding the guilty code
 
 ##Synopsis
 A web based Development Operations tool to inspect, bisect and to narrow down portion of code that has caused a particular integration test to fail by comparing the failed code coverage report with the successful report. We endevour to improve a developer's investigation and diagnostic time on broken tests by 50%.
