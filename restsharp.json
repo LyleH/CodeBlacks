@@ -6,48 +6,6 @@
         "Lines": [
           {
             "Type": 0,
-            "Position": 1,
-            "Text": "<!DOCTYPE html>",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 2,
-            "Text": "<html data-ng-app=\"coverageApp\">",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 3,
-            "Text": "<head>",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 4,
-            "Text": "<meta charset=\"utf-8\" />",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 5,
-            "Text": "<title>RestSharp.RestClient - Coverage Report</title>",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 6,
-            "Text": "<link rel=\"stylesheet\" type=\"text/css\" href=\"report.css\" />",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 7,
-            "Text": "</head><body data-ng-controller=\"DetailViewCtrl\"><div class=\"container\">",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
             "Position": 8,
             "Text": "<h1>Summary</h1>",
             "SubPieces": []
@@ -7566,65 +7524,11 @@
                 "SubPieces": []
               }
             ]
-          },
-          {
-            "Type": 0,
-            "Position": 1217,
-            "Text": "<script type=\"text/javascript\" src=\"combined.js\"></script>",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 1218,
-            "Text": "</body></html>",
-            "SubPieces": []
           }
         ]
       },
       "NewText": {
         "Lines": [
-          {
-            "Type": 0,
-            "Position": 1,
-            "Text": "<!DOCTYPE html>",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 2,
-            "Text": "<html data-ng-app=\"coverageApp\">",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 3,
-            "Text": "<head>",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 4,
-            "Text": "<meta charset=\"utf-8\" />",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 5,
-            "Text": "<title>RestSharp.RestClient - Coverage Report</title>",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 6,
-            "Text": "<link rel=\"stylesheet\" type=\"text/css\" href=\"report.css\" />",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 7,
-            "Text": "</head><body data-ng-controller=\"DetailViewCtrl\"><div class=\"container\">",
-            "SubPieces": []
-          },
           {
             "Type": 0,
             "Position": 8,
@@ -15145,18 +15049,6 @@
                 "SubPieces": []
               }
             ]
-          },
-          {
-            "Type": 0,
-            "Position": 1218,
-            "Text": "<script type=\"text/javascript\" src=\"combined.js\"></script>",
-            "SubPieces": []
-          },
-          {
-            "Type": 0,
-            "Position": 1219,
-            "Text": "</body></html>",
-            "SubPieces": []
           }
         ]
       }
