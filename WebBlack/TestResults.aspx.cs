@@ -9,6 +9,32 @@ public partial class TestResults : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+		//var content = new List<String>{
+		//	"Test1",
+		//	"Test2",
+		//	"Test3",
+		//}; 
+
+		//repeaterPassed.DataSource = content;
+		//repeaterPassed.DataBind();
 
     }
+
+	public List<String> testsPassed()
+	{
+		return new List<String>{
+			"Test1",
+			"Test3",
+			"Test4",
+		};
+	}
+
+	public List<String> testsFailed()
+	{
+		return new List<String>{
+			"Test2",
+			"Test5",
+			"Test6",
+		};
+	}
 }
