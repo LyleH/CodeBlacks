@@ -109,7 +109,6 @@
     <Compile Include="TestComparisonRequest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="code_coverage.msbuild" />
     <None Include="packages.config" />
   </ItemGroup>
