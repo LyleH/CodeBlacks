@@ -1,5 +1,4 @@
 ﻿
-.container { margin: auto; max-width: 1200px; width: 90%; border: solid 1px #a7bac5; padding: 0 20px 20px 20px; background-color: #fff; }
 .footer { font-size: 0.7em; text-align: center; margin-top: 35px; }
 
 th { text-align: left; }
@@ -51,12 +50,12 @@ a.collapsed { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUg
 .center { text-align: center; }
 .rightmargin  { padding-right: 8px; }
 .leftmargin { padding-left: 5px; }
-.green { background-color: #00ff21; }
-.lightgreen { background-color: #dcf4dc; }
-.red { background-color: #f00; }
-.lightred { background-color: #f7dede; }
-.gray { background-color: #dcdcdc; }
-.lightgray { color: #888888; }
+#newTestResults table .green code { background-color: #00ff21; }
+#newTestResults table .lightgreen code { background-color: #dcf4dc; }
+#newTestResults table .red code { background-color: #f00; }
+#newTestResults table .lightred code { background-color: #f7dede; }
+#newTestResults table .gray code { background-color: #dcdcdc; }
+#newTestResults table .lightgray code { color: #888888; }
 
 .ct-chart { position: relative; }
 .ct-chart .ct-line { stroke-width: 2px !important; }
