@@ -1,10 +1,10 @@
 #The Black Spot
 
 ##Synopsis
-A web based Development Operations tool to inspect, bisect and to narrow down portion of code that has caused a particular test to fail by comparing the failed code coverage report with the successful report. We endevour to improve a developer's inventigation and diagnostic time on broken tests by 50%.
+A web based Development Operations tool to inspect, bisect and to narrow down portion of code that has caused a particular integration test to fail by comparing the failed code coverage report with the successful report. We endevour to improve a developer's investigation and diagnostic time on broken tests by 50%.
 
 ##Motivation
-Developers spends a large amount of time diagnosing why tests have broken. Sometimes this can be days. A large chuck is spent identifying portion of code where the code coverage of the failed run differs from the passing run. 
+Integration testing covers many layers/modules of the application in a single run. It is far more complex when compared to the simplistic unit test. Developers spends a large amount of time diagnosing why integration tests have broken. Sometimes this can be days. A large chuck is spent identifying portion of code where the code coverage of the failed run differs from the passing run. 
 
 ##Tools used
 - Visual Studio 2015 RC
