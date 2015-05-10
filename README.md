@@ -2,18 +2,47 @@
  is a web based Development Operations tool to inspect, bisect and determine the exact portion of code that has caused a particular code build to fail by comparing the failed file with the successful file.
 
 #Motivation
+Developers spends a large amount of time diagnosing why tests have broken. Sometimes this can be days.
 A short description of the motivation behind the creation and maintenance of the project. This should explain why the project exists.
 
 #Tools used
-- OpenCover (Code coverage for .Net)
-- Report Generator (Converts xml to output from code coverage to a readable format)
-- Diffplex (Generates textual differences between files)
-- Unity
+- Visual Studio 2015 RC
+- Azure Web Apps
+- Azure Web Jobs
+- Azure Storage
+- Azure Queues
 
 #Installation
+This is a cloud solution so installation should only need to be done once. Because of this, it is a reasonably manual process.
+
+- Create an Azure storage account
+- Create an Azure blob container called testzips
+- Create an Azure queue called run-and-compare-tests
+- Create an Azure blob container called testcomparisons
+- Create connectionstrings.config and add it to the CodeBlacks.Web directory. It must contain the connection string of the created Azure storage account with the name "TestComparisonStorage". The file should look something like this:
+```xml
+<connectionStrings>
+    <add name="TestComparisonStorage" value="[connection string to Azure storage account]"/>
+</connectionStrings>
+```
+The connection string can be found in the properties of the storage account in Visual Studio.
+- Open Visual Studio and rebuild it.
+- Right-click CodeBlacks.Web and select Publish
+- Select Azure WebApps TODO: Finish this
+- Right-click CodeBlacks.WebJob and select Publish to an Azure WebJob TODO: Check this
+- TODO: Finish this.
 Provide code examples and explanations of how to get the project.
 
 #Outside code
+- OpenCover (Code coverage for .Net)
+- Report Generator (Converts xml to output from code coverage to a readable format)
+- Diffplex (Generates textual differences between files)
+- MSBuild 14
+- AngularJS
+- Bootstrap
+- Bootstrap cyborg
+- JQuery
+
 List outside code for example a bootstrap theme that was used
 
 #Tests
@@ -27,4 +56,10 @@ Describe and show how to run the tests with code examples.
 - Lyle Henkeman
 
 #API Reference
+POST api/testcomparison
+
+
+GET api/testcomparison/requestId
+Returns JSON of the comparison results. 
+
 Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
