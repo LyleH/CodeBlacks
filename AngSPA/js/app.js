@@ -11,7 +11,6 @@
               id : '=test_id'
           },
           link: function(scope, element, attrs) {
-              alert(scope.id);
               if (scope.$last){
                   $(".nameContainer").click(function() {
                       alert('IT WORKZ');
@@ -29,7 +28,7 @@
             controller: 'TestListCtrl'
           }).
           when('/test/:itemId', {
-            templateUrl: 'partials/testdetail.html',
+            templateUrl: 'partials/test-detail.html',
             controller: 'TestDetailCtrl'
           }).
           when('/pollvote', {
