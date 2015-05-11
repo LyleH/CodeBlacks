@@ -22,6 +22,8 @@
             margin: 0px;
             border: none;
             border-radius: 0px 0px;
+            font-size: 90%;
+            color: #888888;
         }
         .newTestResults table.table code {
             border: none;
@@ -32,20 +34,25 @@
     </style>
 </head>
 <body style="background-color: black">
-    <div id="slides" class="carousel slide" data-ride="carousel" data-interval="false">
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner text-center" role="listbox" style="height: 520px">
+    <div id="pages" class="carousel slide" data-ride="carousel" data-interval="false">
+        <!-- Wrapper for pages -->
+        <div class="carousel-inner text-center" role="listbox">
             <div class="item active first-slide">
                 <div class="row" style="margin-top: 10px">
                     <img src="images/SilverFern.jpg" />
                 </div>
                 <h1 style="text-align:center; color:#8D8D8D; font-size:80px"><strong>Code Blacks</strong></h1>
+                <a href="#pages" role="button" data-slide="next">Start</a>
             </div>
+            <!--<div class="item">
+                <h1 style="text-align:center; color:#8D8D8D">Fixing Tests</h1>
+
+            </div>-->
             <div class="item">
                 <h1 style="text-align:center; color:#8D8D8D">Test Results</h1>
                 <div class="row" style="margin-top: 10px">
                     <img src="images/FailingTests.png" />
-                    <a href="#slides" role="button" data-slide="next" style="top:-209px; position: relative">Analyze</a>
+                    <a href="#pages" role="button" data-slide="next" style="top:-209px; position: relative">Analyze</a>
                 </div>
             </div>
             <div class="item">
@@ -220,29 +227,28 @@
                         </g>
                     </svg>
                 </div>
+                <a href="#pages" role="button" data-slide="next">See Results</a>
             </div>
             <div class="item newTestResults">
                 <h1 style="text-align:center; color:#8D8D8D">New Test Results</h1>
-                <div id="newTestResultsContainer" style="left:5%; right:5%; position: absolute; height: 420px; overflow:auto;"></div>
-            </div>
-            <div class="item">
-                <h1 style="text-align:center; color:#8D8D8D">Benefits</h1>
+                <div id="newTestResultsContainer" style="background-color: white; margin-left:5px; margin-right: 5px"></div>
             </div>
         </div>
 
         <!-- Controls -->
-        <a id="previousButton" class="left carousel-control" href="#slides" role="button" data-slide="prev" style="display: none;">
+        <a id="previousButton" class="left carousel-control" href="#pages" role="button" data-slide="prev" style="display: none; bottom: auto; top: 45px">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-        <a id="nextButton" class="right carousel-control" href="#slides" role="button" data-slide="next">
+        <!--<a id="nextButton" class="right carousel-control" href="#pages" role="button" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
-        </a>
+        </a>-->
     </div>
     <script id="testResultsTemplate" type="text/x-jsrender">
         {{for fileDifferences}}
-            <div class="container-fluid" style="background-color:white; text-align:left;">
+            <h4 style="color: black; background-color: #8D8D8D;">{{>FileName}}</h4>
+            <div class="container-fluid collapse in" style="background-color:white; text-align:left;">
                 <div class="row">
                     <div class="col-md-6" style="overflow: auto">
                         {{for Differences.OldText.Lines}}
@@ -264,7 +270,7 @@
     <script type="text/javascript" src="Scripts/jsrender.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("#slides").on("slid.bs.carousel", function () {
+            $("#pages").on("slid.bs.carousel", function () {
                 if ($(".active.first-slide").length) {
                     $("#previousButton").hide();
                 } else {
@@ -276,6 +282,7 @@
                 success: function (result) {
                     $("#newTestResultsContainer").html($("#testResultsTemplate").render({ fileDifferences: result }));
                     $("table.lineAnalysis").addClass("table");
+                    $("table.lineAnalysis thead").hide();
                 }
             });
         });
