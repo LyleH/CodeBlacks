@@ -14,7 +14,16 @@
                 <div class="panel-body">
                     <asp:Repeater ItemType="System.string" runat="server" ID="repeaterPassed" SelectMethod="testsPassed">
                         <ItemTemplate>
-                            <p><%# Item %></p>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/RedCross.jpg" BorderStyle="None" Height="15" ImageAlign="Baseline"></asp:Image>
+                                </div>
+                                <div class="form-group">
+                                    <asp:Label Height=" 15" runat="server">
+                                    <%# Item %>
+                                    </asp:Label>
+                                </div>
+                            </div>
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
@@ -31,52 +40,22 @@
                 <div class="panel-body">
                     <asp:Repeater ItemType="System.string" runat="server" ID="repeater1" SelectMethod="testsFailed">
                         <ItemTemplate>
-                            <p><%# Item %></p>
+                            <div class="form-inline">
+                                <div class="form-group">
+                                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/GreenTick.jpg" BorderStyle="None" Height="15" ImageAlign="Baseline"></asp:Image>
+                                </div>
+                                <div class="form-group">
+                                    <asp:Label Height=" 15" runat="server">
+                                    <%# Item %>
+                                    </asp:Label>
+                                </div>
+                            </div>
                         </ItemTemplate>
                     </asp:Repeater>
                 </div>
             </div>
         </div>
     </div>
-
-    <br />
-    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne2">
-                <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#collapseOne2" href="#collapseOne2" aria-expanded="false" aria-controls="collapseOne2">Failed Tests
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseOne2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne2">
-                <div class="panel-body">
-                    <asp:Repeater ItemType="System.string" runat="server" ID="repeater2" SelectMethod="testsPassed">
-                        <ItemTemplate>
-                            <p><%# Item %></p>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTwo2">
-                <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#collapseTwo2" href="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">Passed Tests
-                    </a>
-                </h4>
-            </div>
-            <div id="collapseTwo2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo2">
-                <div class="panel-body">
-                    <asp:Repeater ItemType="System.string" runat="server" ID="repeater3" SelectMethod="testsFailed">
-                        <ItemTemplate>
-                            <p><%# Item %></p>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
 </asp:Content>
 
