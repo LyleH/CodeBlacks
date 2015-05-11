@@ -13,6 +13,7 @@ Integration testing covers many layers/modules of the application in a single ru
 - Azure Web Jobs
 - Azure Storage
 - Azure Queues
+- draw.io
 
 ##Installation
 This is a cloud solution so installation should only need to be done once. Because of this, it is a reasonably manual process.
