@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -36,10 +37,10 @@ namespace CodeBlacks.BusinessRules
 
                 string oldFileContent = fileReader.Exists(oldFile) ? fileReader.ReadAllText(oldFile) : string.Empty;
                 string newFileContent = fileReader.ReadAllText(newFile);
-                SideBySideDiffModel model = CompareFileContent(oldFileContent, newFileContent);
-                if (model != null)
+                IEnumerable<FileDifferences> fileDifferences = CompareFileContent(oldFileContent, newFileContent);
+                if (fileDifferences != null)
                 {
-                    differences.Add(new FileDifferences(newFileName, model));
+                    differences.AddRange(fileDifferences);
                 }
             }
 
@@ -47,12 +48,12 @@ namespace CodeBlacks.BusinessRules
             return differences;
         }
 
-        public SideBySideDiffModel CompareFiles(string oldFile, string newFile)
+        public IEnumerable<FileDifferences> CompareFiles(string oldFile, string newFile)
         {
             return CompareFileContent(fileReader.ReadAllText(oldFile), fileReader.ReadAllText(newFile));
         }
 
-        public static SideBySideDiffModel CompareFileContent(string oldFileContent, string newFileContent)
+        public static IEnumerable<FileDifferences> CompareFileContent(string oldFileContent, string newFileContent)
         {
             if (oldFileContent == null || newFileContent == null)
             {
@@ -83,10 +84,112 @@ namespace CodeBlacks.BusinessRules
                 Trace.WriteLine("No changes to code coverage");
                 return null;
             }
-            
-            return diff;
+
+            return AnalyzeDiff(diff, newLines);
         }
 
+        private static IEnumerable<FileDifferences> AnalyzeDiff(SideBySideDiffModel diff, DiffPiece[] newLines)
+        {
+            IList<Range> oldClassIndexRanges = FindClassIndexRanges(diff.OldText.Lines);
+            IList<Range> newClassIndexRanges = FindClassIndexRanges(diff.NewText.Lines);
+            if (oldClassIndexRanges.Count != newClassIndexRanges.Count)
+            {
+                throw new NotImplementedException();
+            }
+
+            IList<Range> classIndexRanges = FindClassIndexRanges(oldClassIndexRanges, newClassIndexRanges);
+            return BuildFileDifferences(diff, classIndexRanges);
+            
+            // For OldText and NewText
+            // Find all <table class="lineAnalysis">
+            // Find previous non-empty line. It will contain the file name. (<h2 ...>[fileName]</h2>)
+            // Find tbody. All tr elements will contain the source code.
+            // Extract all source code
+        }
+        
+        private static IList<Range> FindClassIndexRanges(IEnumerable<DiffPiece> lines)
+        {
+            IList<Range> classIndexRanges = new List<Range>();
+            int index = -1;
+            foreach (DiffPiece line in lines)
+            {
+                index++;
+                if (line.Text != null && line.Text.StartsWith("<h2"))
+                {
+                    classIndexRanges.Add(new Range(index));
+                }
+                else if (line.Text == "</table>" && classIndexRanges.Count != 0)
+                {
+                    classIndexRanges.Last().End = index;
+                }
+            }
+
+            return classIndexRanges;
+        }
+
+        private static IList<Range> FindClassIndexRanges(IList<Range> oldClassIndexRanges, IList<Range> newClassIndexRanges)
+        {
+            IList<Range> classIndexRanges = new List<Range>();
+            for (int index = 0; index < oldClassIndexRanges.Count; index++)
+            {
+                Range oldIndexRange = oldClassIndexRanges[index];
+                Range newIndexRange = newClassIndexRanges[index];
+                int newStartIndex = Math.Min(oldIndexRange.Start, newIndexRange.Start);
+                int newEndIndex = Math.Max(oldIndexRange.End, newIndexRange.End);
+                classIndexRanges.Add(new Range(newStartIndex, newEndIndex));
+            }
+
+            return classIndexRanges;
+        }
+
+        private static IEnumerable<FileDifferences> BuildFileDifferences(SideBySideDiffModel diff, IEnumerable<Range> classIndexRanges)
+        {
+            IList<FileDifferences> fileDifferences = new List<FileDifferences>();
+            using (IEnumerator<Range> classIndexRange = classIndexRanges.GetEnumerator())
+            {
+                classIndexRange.MoveNext();
+                FileDifferences currentDifference = null;
+                bool doesFileHaveCoverageDifferences = false;
+                int count = diff.NewText.Lines.Count;
+                for (int index = 0; index < count; index++)
+                {    
+                    if (index < classIndexRange.Current.Start)
+                    {
+                        continue;
+                    }
+
+                    if (index == classIndexRange.Current.Start)
+                    {
+                        string line = diff.OldText.Lines[index].Text ?? diff.NewText.Lines[index].Text;
+                        string fileName = Regex.Match(line, "<h2[^>]*>(?<FileName>[^<]+)").Groups["FileName"].Value;
+                        currentDifference = new FileDifferences(Path.GetFileName(fileName), new SideBySideDiffModel());
+                    }
+                    else
+                    {
+                        currentDifference.Differences.OldText.Lines.Add(diff.OldText.Lines[index]);
+                        currentDifference.Differences.NewText.Lines.Add(diff.NewText.Lines[index]);
+                        doesFileHaveCoverageDifferences = doesFileHaveCoverageDifferences ||
+                            diff.OldText.Lines[index].Type != ChangeType.Unchanged ||
+                            diff.NewText.Lines[index].Type != ChangeType.Unchanged;
+                        if (index == classIndexRange.Current.End)
+                        {
+                            if (doesFileHaveCoverageDifferences)
+                            {
+                                fileDifferences.Add(currentDifference);
+                            }
+
+                            if (!classIndexRange.MoveNext())
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return fileDifferences;
+        }
+        
         private static string RemoveLineNumbers(string fileContent)
         {
             const string lineNumberPattern = @"(?<Prefix>(?:<td[^<]+</td>){2})(?:<td class=""rightmargin right""><code>\d+</code></td>)";
@@ -95,7 +198,17 @@ namespace CodeBlacks.BusinessRules
 
         private static bool DoesLineHaveDifferentCoverage(DiffPiece line)
         {
-            return line.Type != ChangeType.Unchanged && line.Text != null && Regex.IsMatch(line.Text, @"'VC':\s*'\d+'");
+            bool isDifferent = line.Type != ChangeType.Unchanged && line.Text != null && Regex.IsMatch(line.Text, @"'VC':\s*'\d+'");
+            if (isDifferent)
+            {
+                line.Text = Regex.Replace(line.Text, "^<tr ", "<tr class=\"danger\" ");
+            }
+            else
+            {
+                line.Type = ChangeType.Unchanged;
+            }
+
+            return isDifferent;
         }
 
         private void AddDeletedFileComparisons(

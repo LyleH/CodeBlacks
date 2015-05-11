@@ -50,12 +50,12 @@ a.collapsed { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUg
 .center { text-align: center; }
 .rightmargin  { padding-right: 8px; }
 .leftmargin { padding-left: 5px; }
-.newTestResults table .green code { background-color: #00ff21; }
-.newTestResults table .lightgreen code { background-color: #dcf4dc; }
-.newTestResults table .red code { background-color: #f00; }
-.newTestResults table .lightred code { background-color: #f7dede; }
-.newTestResults table .gray code { background-color: #dcdcdc; }
-.newTestResults table .lightgray code { color: #888888; }
+.newTestResults table .green, .newTestResults table .green code { background-color: #00ff21; }
+.newTestResults table .lightgreen, .newTestResults table .lightgreen code { background-color: #dcf4dc; }
+.newTestResults table .red, .newTestResults table .red code { background-color: #f00; }
+.newTestResults table .lightred, .newTestResults table .lightred code { background-color: #f7dede; }
+.newTestResults table .gray, .newTestResults table .gray code { background-color: #dcdcdc; }
+.newTestResults table .lightgray, .newTestResults table .lightgray code { color: #888888; }
 
 .ct-chart { position: relative; }
 .ct-chart .ct-line { stroke-width: 2px !important; }

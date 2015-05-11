@@ -9,15 +9,10 @@ namespace CodeBlacks.Harness
         public static void Main(string[] args)
         {
             string baseDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\.."));
-            FileDifferencesSerializer.ToFile(Path.Combine(baseDirectory, @"..\restsharp.json"),
-                new FileDifferences[]
-                {
-                    new FileDifferences(
-                        "RestSharp_RestClient.htm",
-                        CodeCoverageComparison.CompareFileContent(File.ReadAllText(args[0]), File.ReadAllText(args[1])))
-                });
-            /*string baseDirectory = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\.."));
-            (new CodeCoverageRunner()
+            FileDifferencesSerializer.ToFile(
+                Path.Combine(baseDirectory, @"..\restsharp.json"),
+                CodeCoverageComparison.CompareFileContent(File.ReadAllText(args[0]), File.ReadAllText(args[1])));
+            /*(new CodeCoverageRunner()
             {
                 PathToOpenCover = Path.Combine(baseDirectory, @"RestSharp\packages\OpenCover.4.5.3723\OpenCover.Console.exe"),
                 PathToReportGenerator = Path.Combine(baseDirectory, @"RestSharp\packages\ReportGenerator.2.1.4.0\ReportGenerator.exe"),
