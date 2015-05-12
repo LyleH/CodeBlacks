@@ -45,6 +45,7 @@ Provide code examples and explanations of how to get the project.
 - Bootstrap cyborg (Bootstrap theme)
 - JQuery
 - JSRender (HTML templates)
+- Moq (Mocking for unit testing)
 
 List outside code for example a bootstrap theme that was used
 
@@ -57,6 +58,8 @@ List outside code for example a bootstrap theme that was used
 
 ##API Reference
 POST api/testcomparison
+Requires a zip file containing 2 directories of DLLs. One must be called "old" and the other one "new".
+Returns a request id.
 
 GET api/testcomparison/requestId
 Returns JSON of the comparison results. 
