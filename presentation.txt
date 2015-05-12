@@ -2,7 +2,7 @@ Hello. My name is ... and we are the Code Blacks.
 We built a cloud app that solves one of our biggest inefficiencies here at Ambit Asset Finance.
 We asked ... what our biggest inefficiency was and they said fixing test failures so that is problem we solved.
 We wanted to quantify how much time and money was spent diagnosing and fixing test failures.
-We asked 10 developers how much time they spent fixing tests and what was the maximum amount of time spent fixing a single test.
+We asked our best developers how much time they spent fixing tests and what was the maximum amount of time spent fixing a single test.
 The results were...
 
 So let's see this in action.
@@ -31,13 +31,14 @@ Light read means the line was not executed by test.
 Dark red means something changed.
 You can immediately see which line broke this test.
 Normally a developer would have to do this manually and it might take them hours or days.
+Now they can spent their time fixing the code or the test, rather than diagnosing what went wrong.
 
 We thought this was a good result, but we didn't want you to take our word for it.
 We went back to the developers we interviewed above and asked them what they thought about it and they said ...
 
 In conclusion:
 We identify one of the large development inefficiencies.
-We created a solution to improve it by ...
-We succeeded and developers can wait to use it.
+We created a solution to improve it by up to ...
+We succeeded and developers can't wait to use it.
 
 Thanks for listening. I hope you enjoyed this presentation.
