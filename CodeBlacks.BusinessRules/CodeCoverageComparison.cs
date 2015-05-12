@@ -15,6 +15,11 @@ namespace CodeBlacks.BusinessRules
         private readonly IDirectoryReader directoryReader;
         private readonly IFileReader fileReader;
 
+        public CodeCoverageComparison()
+            : this(new DirectoryReader(), new FileReader())
+        {
+        }
+
         public CodeCoverageComparison(IDirectoryReader directoryReader, IFileReader fileReader)
         {
             this.directoryReader = directoryReader;
@@ -99,12 +104,6 @@ namespace CodeBlacks.BusinessRules
 
             IList<Range> classIndexRanges = FindClassIndexRanges(oldClassIndexRanges, newClassIndexRanges);
             return BuildFileDifferences(diff, classIndexRanges);
-            
-            // For OldText and NewText
-            // Find all <table class="lineAnalysis">
-            // Find previous non-empty line. It will contain the file name. (<h2 ...>[fileName]</h2>)
-            // Find tbody. All tr elements will contain the source code.
-            // Extract all source code
         }
         
         private static IList<Range> FindClassIndexRanges(IEnumerable<DiffPiece> lines)

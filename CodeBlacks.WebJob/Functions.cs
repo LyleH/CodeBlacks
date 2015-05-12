@@ -31,7 +31,7 @@ namespace CodeBlacks.WebJob
             runner.PathToCodeCoverageXmlFile = Path.Combine(testDirectory, "new.xml");
             runner.PathToCodeCoverageReportDirectory = Path.Combine(testDirectory, "NewCoverage");
             runner.RunCodeCoverage();
-            IEnumerable<FileDifferences> differences = CreateComparison().CompareDirectories(pathToOldCoverage, pathToNewCoverage);
+            IEnumerable<FileDifferences> differences = new CodeCoverageComparison().CompareDirectories(pathToOldCoverage, pathToNewCoverage);
             outputBlob.UploadText(FileDifferencesSerializer.ToString(differences));
             Directory.Delete(testDirectory, true);
         }
@@ -53,11 +53,6 @@ namespace CodeBlacks.WebJob
                 PathToTestRunner = Path.Combine(currentDirectory, @"xunit.runner.console.2.0.0\tools\xunit.console.exe"),
                 CodeCoverageFilter = request.CodeCoverageFilter
             };
-        }
-
-        private static CodeCoverageComparison CreateComparison()
-        {
-            return new CodeCoverageComparison(new DirectoryReader(), new FileReader());
         }
     }
 }
