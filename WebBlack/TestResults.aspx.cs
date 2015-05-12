@@ -17,7 +17,7 @@ public partial class TestResults : System.Web.UI.Page
 		return new List<String>{
 			"Test1",
 			"Test3",
-			"Test4",
+			"Test4"
 		};
 	}
 
