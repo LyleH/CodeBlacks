@@ -14,14 +14,16 @@
                 <div class="panel-body">
                     <asp:Repeater ItemType="System.string" runat="server" ID="repeaterPassed" SelectMethod="testsPassed">
                         <ItemTemplate>
-                            <div class="form-inline">
+                            <div class="form-inline" onclick="Clicked(<%# Item %>)">
                                 <div class="form-group">
                                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/RedCross.jpg" BorderStyle="None" Height="15" ImageAlign="Baseline"></asp:Image>
                                 </div>
                                 <div class="form-group">
-                                    <asp:Label Height=" 15" runat="server">
+                                    <a href="/TestRunCompare.aspx?TestName=<%# Item %>">
+                                        <asp:Label Height=" 15" runat="server">
                                     <%# Item %>
-                                    </asp:Label>
+                                        </asp:Label>
+                                    </a>
                                 </div>
                             </div>
                         </ItemTemplate>
@@ -41,13 +43,16 @@
                     <asp:Repeater ItemType="System.string" runat="server" ID="repeater1" SelectMethod="testsFailed">
                         <ItemTemplate>
                             <div class="form-inline">
+
                                 <div class="form-group">
                                     <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/GreenTick.jpg" BorderStyle="None" Height="15" ImageAlign="Baseline"></asp:Image>
                                 </div>
                                 <div class="form-group">
-                                    <asp:Label Height=" 15" runat="server">
+                                    <a href="/TestRunCompare.aspx?TestName=<%# Item %>">
+                                        <asp:Label Height=" 15" runat="server">
                                     <%# Item %>
-                                    </asp:Label>
+                                        </asp:Label>
+                                    </a>
                                 </div>
                             </div>
                         </ItemTemplate>
