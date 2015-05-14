@@ -38,6 +38,7 @@ To deploy it we used an Azure WebJob that was connected to a command queue, a st
 a storage container for output.
 Haystack is a really good solution that makes a very complex problem a lot simpler.
 This is the first test diagnostic solution I've heard of.
+I feel that it's a pity that I've spent so much time in my career diagnosing issues that this tool could have helped me with.
 It has significant benefit which Alven will now tell you about.
 
 So let's analyze it.
