@@ -5,8 +5,8 @@ We wanted to quantify how much time and money was spent diagnosing and fixing te
 We asked our best developers how much time they spent fixing tests and what was the maximum amount of time spent fixing a single test.
 The results were...
 
-Thanks Alven. I'm Jeremy. It's going to be my job now to find the needle in the haystack, or as I prefer to call it,
-trying to find the piece of hay in the stack of needles.
+Thanks Alven. It's going to be my job now to find the needle in the haystack.
+I, personally, think it is better described as trying to find the piece of hay in the stack of needles.
 In our business unit, we had millions of lines of source code and this changes approximately 100 times a day.
 Maintaining the tests takes a large amount of effort and energy.
 Haystack is trying to reduce this.
@@ -14,8 +14,9 @@ We tested Haystack on an open source project called RestSharp.
 It gives developers easy access to internal or third-party web systems.
 This product has been downloaded over 900 thousand times.
 This is a list of tests from RestSharp.
+This is real data.
 You can see that one of these tests needs to be investigated.
-If we click on the tests, we'll see the work that Haystack did.
+If we click on the test, we'll be able to see the work that Haystack did.
 
 If we look at the results, we can see there is a line emphasized in dark red.
 We've found our needle.
@@ -30,16 +31,17 @@ Haystack will also highlight were the code has been executed a different number 
 While building Haystack we got to use some real cool new technology.
 We used Visual Studio 2015 for development and Azure for deployment.
 Our comparison algorithm used OpenCover, ReportGenerator and DiffPlex.
-Haystack works by running the test when it was last passing.
-After that, it runs the test when it needed investigation.
-And compares the result.
+Haystack works by running the test when it last passed.
+After that, it runs the test when it required investigation.
+And compares the results.
 It runs the tests with code coverage, which determines the lines of code the test executed.
-To deploy it we used an Azure WebJob that was connected to a command queue, a storage container for input and
+We deployed onto Azure using a WebJob that was connected to a command queue, a storage container for input and
 a storage container for output.
 Haystack is a really good solution that makes a very complex problem a lot simpler.
 This is the first test diagnostic solution I've heard of.
-I feel that it's a pity that I've spent so much time in my career diagnosing issues that this tool could have helped me with.
-It has significant benefit which Alven will now tell you about.
+I feel that it's a pity that I've spent so much time in my career diagnosing issues that this
+tool could have helped me with and I'm looking forward to using it.
+It has significant benefits which Alven will now tell you about.
 
 So let's analyze it.
 For our analysis, we need the tests files when the test last passed and the current test files with the broken test.
