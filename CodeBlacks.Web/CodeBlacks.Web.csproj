@@ -200,6 +200,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\FailingTests.PNG" />
+    <Content Include="images\GreenTick.jpg" />
+    <Content Include="images\RedCross.jpg" />
     <Content Include="images\SilverFern.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
