@@ -5,14 +5,40 @@ We wanted to quantify how much time and money was spent diagnosing and fixing te
 We asked our best developers how much time they spent fixing tests and what was the maximum amount of time spent fixing a single test.
 The results were...
 
-So let's see this in action.
-We tested our solution on an open source project called RestSharp, which has over 900 thousand downloads.
+Thanks Alven. I'm Jeremy. It's going to be my job now to find the needle in the haystack, or as I prefer to call it,
+trying to find the piece of hay in the stack of needles.
+In our business unit, we had millions of lines of source code and this changes approximately 100 times a day.
+Maintaining the tests takes a large amount of effort and energy.
+Haystack is trying to reduce this.
+We tested Haystack on an open source project called RestSharp.
 It gives developers easy access to internal or third-party web systems.
-Here is a list of tests from RestSharp. You can see there are some failures.
-Usually, if a developer has to fix a test, a large amount of effort and time can be spent diagnosing what broke the test.
-Sometimes it is like trying to find a very small needle in a very large haystack.
-Here at Ambit Asset Finance, we have millions of lines of source code and this changes about 100 times a day.
-You can see there is an Analyze button beside this test.
+This product has been downloaded over 900 thousand times.
+This is a list of tests from RestSharp.
+You can see that one of these tests needs to be investigated.
+If we click on the tests, we'll see the work that Haystack did.
+
+If we look at the results, we can see there is a line emphasized in dark red.
+We've found our needle.
+This is the line of code that made the test unhappy.
+There may have been other lines that changed, but these were ignored because they were not the ones that broke the test.
+You can see some lines are green.
+This means they were executed by the test.
+You can see some lines are light red.
+This means they were not executed by the test.
+Haystack will also highlight were the code has been executed a different number of times.
+
+While building Haystack we got to use some real cool new technology.
+We used Visual Studio 2015 for development and Azure for deployment.
+Our comparison algorithm used OpenCover, ReportGenerator and DiffPlex.
+Haystack works by running the test when it was last passing.
+After that, it runs the test when it needed investigation.
+And compares the result.
+It runs the tests with code coverage, which determines the lines of code the test executed.
+To deploy it we used an Azure WebJob that was connected to a command queue, a storage container for input and
+a storage container for output.
+Haystack is a really good solution that makes a very complex problem a lot simpler.
+This is the first test diagnostic solution I've heard of.
+It has significant benefit which Alven will now tell you about.
 
 So let's analyze it.
 For our analysis, we need the tests files when the test last passed and the current test files with the broken test.
@@ -24,14 +50,6 @@ Once we have this information, we compare it and determine the differences.
 We used OpenCover and ReportGenerator for code coverage and DiffPlex for some text comparisons.
 We store the comparison report in Azure Storage and it is ready to be used by the developer.
 
-So let's have a look at the results.
-This is the old code and this is the new code.
-Green means the line was executed by the test.
-Light read means the line was not executed by test.
-Dark red means something changed.
-You can immediately see which line broke this test.
-Normally a developer would have to do this manually and it might take them hours or days.
-Now they can spent their time fixing the code or the test, rather than diagnosing what went wrong.
 
 We thought this was a good result, but we didn't want you to take our word for it.
 We went back to the developers we interviewed above and asked them what they thought about it and they said ...
