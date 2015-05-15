@@ -22,7 +22,7 @@ This is a cloud solution so installation should only need to be done once. Becau
 - Create an Azure blob container called testzips
 - Create an Azure queue called run-and-compare-tests
 - Create an Azure blob container called testcomparisons
-- Create connectionstrings.config and add it to the CodeBlacks.Web directory. It must contain the connection string of the created Azure storage account with the name "TestComparisonStorage". The file should look something like this:
+- Add the following line to the web.config file in the CodeBlacks.Web directory and the app.config file in the CodeBlacks.WebJob directory. It must contain the connection string of the created Azure storage account with the name "TestComparisonStorage". The file should look something like this:
 ```xml
 <connectionStrings>
     <add name="TestComparisonStorage" value="[connection string to Azure storage account]"/>
@@ -30,11 +30,8 @@ This is a cloud solution so installation should only need to be done once. Becau
 ```
 The connection string can be found in the properties of the storage account in Visual Studio.
 - Open Visual Studio and rebuild it.
-- Right-click CodeBlacks.Web and select Publish
-- Select Azure WebApps TODO: Finish this
-- Right-click CodeBlacks.WebJob and select Publish to an Azure WebJob TODO: Check this
-- TODO: Finish this.
-Provide code examples and explanations of how to get the project.
+- Right-click CodeBlacks.Web and select Publish. Follow the wizard to publish it to a new or existing Azure web app.
+- Right-click CodeBlacks.WebJob and select Publish to an Azure WebJob. Follow the wizard to publish it to a new or existing Azure WebJob
 
 ##Outside code
 - OpenCover (Code coverage for .Net)
@@ -45,9 +42,8 @@ Provide code examples and explanations of how to get the project.
 - Bootstrap cyborg (Bootstrap theme)
 - JQuery
 - JSRender (HTML templates)
+- Animate.css
 - Moq (Mocking for unit testing)
-
-List outside code for example a bootstrap theme that was used
 
 ##Contributors
 - Alven Lee
